@@ -14,9 +14,19 @@ jobs:
         uses: webfactory/ssh-agent@v0.5.1
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEYS }}
-
+          
+      - name: Create destination directory
+        uses: appleboy/ssh-action@master
+        with:
+          host: 95.85.121.201
+          port: 2222
+          username: test
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            mkdir -p /home/test/destination
+            
       - name: Copy files via SSH
-        run: scp -r -P 2222 -i ${{ secrets.SSH_PRIVATE_KEYS }} docker-compose.yaml install.sh test@95.85.121.201:/path/to/destination
+        run: scp -r -P 2222 -i ${{ secrets.SSH_PRIVATE_KEYS }} docker-compose.yaml install.sh test@95.85.121.201:/home/test/destination
 
       - name: SSH into the server and run script
         uses: appleboy/ssh-action@master
@@ -26,6 +36,6 @@ jobs:
           username: test
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            cd /path/to/destination
+            cd /home/test/destination
             chmod +x install.sh
             ./install.sh
