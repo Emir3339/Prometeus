@@ -20,22 +20,28 @@ jobs:
         with:
           host: 95.85.121.201
           port: 2222
-          username: test
+          username: ${{ secrets.SSH_USENAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             mkdir -p /home/test/destination
             
+      - name: Create temporary key file
+        run: echo "$SSH_PRIVATE_KEY" > temp_key
+            
       - name: Copy files via SSH
-        run: scp -r -P 2222 -i ${{ secrets.SSH_PRIVATE_KEYS }} docker-compose.yaml install.sh test@95.85.121.201:/home/test/destination
+        run: scp -r -P 22 -i temp_key docker-compose.yaml install.sh ${{ secrets.SSH_USENAME }}@95.85.121.201:/home/test/destination
 
       - name: SSH into the server and run script
         uses: appleboy/ssh-action@master
         with:
           host: 95.85.121.201
           port: 2222
-          username: test
+          username: ${{ secrets.SSH_USENAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             cd /home/test/destination
             chmod +x install.sh
             ./install.sh
+            
+      - name: Clean up temporary key file
+        run: rm temp_key
