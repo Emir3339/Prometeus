@@ -16,13 +16,13 @@ jobs:
       - name: Set up SSH
         uses: webfactory/ssh-agent@v0.5.2
         with:
-          ssh-private-key: $TEST_SECRET
+          ssh-private-key: ${{ secrets.TEST_SECRET }}
 
       - name: Copy files via SSH
         run: |
-          ssh -p 2222 $TEST_USER@95.85.121.201 'mkdir -p /path/to/destination'
-          scp -P 2222 -r docker-compose.yaml install.sh $TEST_USER@95.85.121.201:/path/to/destination
+          ssh -p 2222 ${{ secrets.TEST_USER }}@95.85.121.201 'mkdir -p /path/to/destination'
+          scp -P 2222 -r docker-compose.yaml install.sh ${{ secrets.TEST_USER }}@95.85.121.201:/path/to/destination
 
       - name: Run install.sh
         run: |
-          ssh -p 2222 $TEST_USER@95.85.121.201 'cd /path/to/destination && chmod +x install.sh && ./install.sh'
+          ssh -p 2222 ${{ secrets.TEST_USER }}@95.85.121.201 'cd /path/to/destination && chmod +x install.sh && ./install.sh'
