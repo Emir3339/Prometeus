@@ -38,7 +38,7 @@ jobs:
           port: 2222
           username: ${{ secrets.SSH_USENAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: ".install.sh"
+          source: "./"
           target: /home/test/destination
           rm: false
             
