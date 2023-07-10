@@ -1,9 +1,9 @@
-#name: Deploy to Linux via SSH
+name: Deploy to Linux via SSH
 
-#on:
-#  push:
-#    branches:
-#      - main
+on:
+  push:
+    branches:
+      - main
 
 jobs:
   deploy:
@@ -29,7 +29,7 @@ jobs:
             mkdir -p /home/test/destination
             
       - name: Add known hosts
-        run: echo "${{ secrets.SSH_KEY }}" >> $HOME/.ssh/known_hosts
+        run: echo "${{ secrets.SSH_PRIVATE_KEY }}" >> $HOME/.ssh/known_hosts
             
       - name: Copy files via SSH
         uses: appleboy/scp-action@master
@@ -38,9 +38,7 @@ jobs:
           port: 2222
           username: ${{ secrets.SSH_USENAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: |
-            docker-compose1.yaml
-#            install.sh
+          source: "."
           target: /home/test/destination
 
             
@@ -63,17 +61,17 @@ jobs:
 #        run: |
 #          ssh -p 2222 -i ${{ secrets.SSH_PRIVATE_KEYS }} ${{ secrets.SSH_USENAME }}@95.85.121.201 ls /home/test/destination
 
-      - name: SSH into the server and run script
-        uses: appleboy/ssh-action@master
-        with:
-          host: 95.85.121.201
-          port: 2222
-          username: ${{ secrets.SSH_USENAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            cd /home/test/destination
-            chmod +x install.sh
-            ./install.sh
+#      - name: SSH into the server and run script
+#        uses: appleboy/ssh-action@master
+#        with:
+#          host: 95.85.121.201
+#          port: 2222
+#          username: ${{ secrets.SSH_USENAME }}
+#          key: ${{ secrets.SSH_PRIVATE_KEY }}
+#          script: |
+#            cd /home/test/destination
+#            chmod +x install.sh
+#            ./install.sh
             
-      - name: Clean up temporary key file
-        run: rm temp_key
+#      - name: Clean up temporary key file
+#        run: rm temp_key
