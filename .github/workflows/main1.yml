@@ -39,7 +39,7 @@ jobs:
           PASS_KEY: ${{ secrets.PASS_KEY }}
         run: |
           expect -c '
-            spawn scp -r -P 2222 docker-compose1.yaml install.sh ${{ secrets.SSH_USENAME }}@95.85.121.201:/home/test/destination
+            spawn yes | scp -r -P 2222 StrictHostKeyChecking=no docker-compose1.yaml install.sh ${{ secrets.SSH_USENAME }}@95.85.121.201:/home/test/destination
             expect "password:"
             send "$env(PASS_KEY)\n"
             interact
