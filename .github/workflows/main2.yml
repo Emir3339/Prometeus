@@ -27,4 +27,3 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
             scp -P 2222 ./docker-compose1.yaml ./install.sh ${{ secrets.SSH_USENAME }}@95.85.121.201:/home/test/destination
-
