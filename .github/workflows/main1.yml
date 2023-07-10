@@ -30,18 +30,20 @@ jobs:
             
       - name: Create temporary key file
         run: echo "$SSH_PRIVATE_KEY" > temp_key
+        
+      - name: Install expect
+        run: sudo apt-get -y install expect
             
       - name: Copy files via SSH with password using expect
         env:
           PASS_KEY: ${{ secrets.PASS_KEY }}
         run: |
-          sudo apt-get -y install expect
-          |
           expect -c '
             spawn scp -r -P 2222 docker-compose.yaml install.sh ${{ secrets.SSH_USENAME }}@95.85.121.201:/home/test/destination
             expect "password:"
             send "$env(PASS_KEY)\n"
             interact
+          '
 
       - name: SSH into the server and run script
         uses: appleboy/ssh-action@master
