@@ -25,5 +25,8 @@ jobs:
           port: 2222
           username: ${{ secrets.SSH_USENAME }}
           password: ${{ secrets.PASS_KEY }}
-          local: "./docker-compose1.yaml,./install.sh"
+          source: |
+            ./docker-compose1.yaml
+            ./install.sh
+          target: /home/test/destination
           remote: /home/test/destination
