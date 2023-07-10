@@ -19,11 +19,13 @@ jobs:
         run: echo "${{ secrets.SSH_PRIVATE_KEY }}" >> $HOME/.ssh/known_hosts
 
       - name: Copy files via SSH
-        uses: appleboy/ssh-action@v0.3.0
+        uses: appleboy/scp-action@v2
         with:
           host: 95.85.121.201
           port: 2222
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            scp -P 2222 ./docker-compose1.yaml ./install.sh ${{ secrets.SSH_USENAME }}@95.85.121.201:/home/test/destination
+          source: |
+            ./docker-compose1.yaml
+            ./install.sh
+          target: /home/test/destination
