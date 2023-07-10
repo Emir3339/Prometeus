@@ -39,7 +39,9 @@ jobs:
           PASS_KEY: ${{ secrets.PASS_KEY }}
         run: |
           ssh-keyscan -p 2222 -H 95.85.121.201 >> $HOME/.ssh/known_hosts
-          scp -r -P 2222 -i ${{ secrets.SSH_PRIVATE_KEYS }} docker-compose1.yaml install.sh ${{ secrets.SSH_USENAME }}@95.85.121.201:/home/test/destination
+          echo "${{ secrets.SSH_KEY }}" >> $HOME/.ssh/known_hosts
+          chmod 600 $HOME/.ssh/id_rsa
+          scp -r -P 2222 -i $HOME/.ssh/id_rsa docker-compose1.yaml install.sh ${{ secrets.SSH_USENAME }}@95.85.121.201:/home/test/destination
             
 #      - name: List remote directory contents
 #        run: |
