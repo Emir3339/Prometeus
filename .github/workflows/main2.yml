@@ -19,7 +19,7 @@ jobs:
         run: echo "${{ secrets.SSH_PRIVATE_KEY }}" >> $HOME/.ssh/known_hosts
 
       - name: Copy files via SSH
-        uses: appleboy/scp-action@v2
+        uses: appleboy/scp-action@master
         with:
           host: 95.85.121.201
           port: 2222
