@@ -33,7 +33,7 @@ jobs:
         with:
           host: 95.85.121.201
           port: 2222
-          username: ${{ secrets.SSH_USERNAME }}
+          username: ${{ secrets.SSH_USENAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: |
             docker-compose1.yaml
