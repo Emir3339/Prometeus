@@ -26,6 +26,6 @@ jobs:
           username: ${{ secrets.SSH_USERNAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: |
-            ${{ github.workspace }}/docker-compose1.yaml
-            ${{ github.workspace }}/install.sh
+            /home/runner/work/Prometeus/docker-compose1.yaml
+            /home/runner/work/Prometeus/install.sh
           target: /home/test/destination
