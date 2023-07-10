@@ -40,7 +40,7 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: "."
           target: /home/test/destination
-
+          rm: false
             
 #      - name: Create temporary key file
 #        run: echo "$SSH_PRIVATE_KEY" > temp_key
