@@ -26,7 +26,7 @@ jobs:
           username: ${{ secrets.SSH_USENAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           source: docker-compose1.yaml
-          target: /home/test/destination
+          target: /destination
           timeout: 30s
           command_timeout: 10m
           use_insecure_cipher: false
