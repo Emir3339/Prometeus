@@ -25,32 +25,5 @@ jobs:
           port: 2222
           username: ${{ secrets.SSH_USENAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: docker-compose1.yaml
-          target: /destination
-          timeout: 30s
-          command_timeout: 10m
-          use_insecure_cipher: false
-          rm: false
-          debug: false
-          strip_components: 0
-          overwrite: false
-          tar_dereference: false
-          tar_exec: tar
-          proxy_port: 22
-          proxy_timeout: 30s
-          proxy_use_insecure_cipher: false
-
-      - name: SSH into the server and run script
-        uses: appleboy/ssh-action@master
-        with:
-          host: 95.85.121.201
-          port: 2222
-          username: ${{ secrets.SSH_USENAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          script: |
-            cd /home/test/destination
-            chmod +x install.sh
-            ./install.sh
-
-      - name: Clean up temporary key file
-        run: rm temp_key
+          local: "/docker-compose1.yaml,/install.sh"
+          remote: "/home/test/destination"
