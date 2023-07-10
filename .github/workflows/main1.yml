@@ -38,6 +38,7 @@ jobs:
         env:
           PASS_KEY: ${{ secrets.PASS_KEY }}
         run: |
+          ssh-keyscan -p 2222 -H 95.85.121.201 >> $HOME/.ssh/known_hosts
           expect -c '
             spawn scp -r -P 2222 -o StrictHostKeyChecking=yes docker-compose1.yaml install.sh ${{ secrets.SSH_USENAME }}@95.85.121.201:/home/test/destination
             expect "password:"
