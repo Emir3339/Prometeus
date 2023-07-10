@@ -24,6 +24,6 @@ jobs:
           host: 95.85.121.201
           port: 2222
           username: ${{ secrets.SSH_USENAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          password: ${{ secrets.PASS_KEY }}
           local: "./docker-compose1.yaml,./install.sh"
           remote: /home/test/destination
