@@ -38,7 +38,7 @@ jobs:
           sudo apt-get -y install expect
           |
           expect -c '
-            spawn scp -r -P 2222 docker-compose.yaml install.sh ${{ secrets.SSH_USENAME }}@95.85.121.201:/path/to/destination
+            spawn scp -r -P 2222 docker-compose.yaml install.sh ${{ secrets.SSH_USENAME }}@95.85.121.201:/home/test/destination
             expect "password:"
             send "$env(PASS_KEY)\n"
             interact
