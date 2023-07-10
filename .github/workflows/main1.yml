@@ -1,8 +1,8 @@
-name: Deploy to Linux via SSH
+#name: Deploy to Linux via SSH
 
-on:
-  push:
-    branches:
+#on:
+#  push:
+#    branches:
       - main
 
 jobs:
