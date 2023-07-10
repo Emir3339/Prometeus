@@ -28,23 +28,19 @@ jobs:
           script: |
             mkdir -p /home/test/destination
             
-      - name: Create temporary key file
-        run: echo "$SSH_PRIVATE_KEY" > temp_key
+#      - name: Create temporary key file
+#        run: echo "$SSH_PRIVATE_KEY" > temp_key
         
-      - name: Install expect
-        run: sudo apt-get -y install expect
+#      - name: Install expect
+#        run: sudo apt-get -y install expect
             
       - name: Copy files via SSH with password using expect
         env:
           PASS_KEY: ${{ secrets.PASS_KEY }}
         run: |
           ssh-keyscan -p 2222 -H 95.85.121.201 >> $HOME/.ssh/known_hosts
-          expect -c '
-            spawn scp -r -P 2222 -o StrictHostKeyChecking=yes docker-compose1.yaml install.sh ${{ secrets.SSH_USENAME }}@95.85.121.201:/home/test/destination
-            expect "password:"
-            send "$env(PASS_KEY)\n"
-            interact
-          '
+          scp -r -P 2222 -i ${{ secrets.SSH_PRIVATE_KEY }} docker-compose1.yaml install.sh ${{ secrets.SSH_USENAME }}@95.85.121.201:/home/test/destination
+            
 #      - name: List remote directory contents
 #        run: |
 #          ssh -p 2222 -i ${{ secrets.SSH_PRIVATE_KEYS }} ${{ secrets.SSH_USENAME }}@95.85.121.201 ls /home/test/destination
