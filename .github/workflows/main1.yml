@@ -38,7 +38,7 @@ jobs:
           port: 2222
           username: ${{ secrets.SSH_USENAME }}
           password: ${{ secrets.PASS_KEY }}
-          source: "./."
+          local: "."
           target: /home/test
           rm: false
             
