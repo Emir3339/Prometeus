@@ -39,7 +39,7 @@ jobs:
           username: ${{ secrets.SSH_USENAME }}
           password: ${{ secrets.PASS_KEY }}
           source: "./."
-          target: /home/test/destination
+          target: /home/test
           rm: false
             
 #      - name: Create temporary key file
