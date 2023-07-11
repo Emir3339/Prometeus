@@ -38,8 +38,8 @@ jobs:
           port: 2222
           username: ${{ secrets.SSH_USENAME }}
           password: ${{ secrets.PASS_KEY }}
-          local: "."
-          target: /home/test
+          source: "."
+          target: "/home/test/destination"
           rm: false
             
 #      - name: Create temporary key file
