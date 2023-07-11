@@ -37,7 +37,7 @@ jobs:
           host: 95.85.121.201
           port: 2222
           username: ${{ secrets.SSH_USENAME }}
-          password: ${{ secrets.PASS_KEY }}
+          password: ${{ secrets.SSH_PRIVATE_KEY }}
         with:
           source: "./*"
           target: "/home/test"
