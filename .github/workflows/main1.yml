@@ -26,7 +26,7 @@ jobs:
           username: ${{ secrets.SSH_USENAME }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
           script: |
-            mkdir -p /home/test/destination
+            mkdir /home/test/destination
             
       - name: Add known hosts
         run: echo "${{ secrets.SSH_PRIVATE_KEY }}" >> $HOME/.ssh/known_hosts
@@ -39,7 +39,7 @@ jobs:
           username: ${{ secrets.SSH_USENAME }}
           password: ${{ secrets.PASS_KEY }}
           source: "."
-          target: "/home/test/destination"
+          target: "/home/test"
           rm: false
             
 #      - name: Create temporary key file
