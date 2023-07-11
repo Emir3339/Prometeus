@@ -33,12 +33,13 @@ jobs:
             
       - name: Copy files via SSH
         uses: appleboy/scp-action@master
-        with:
+        env:
           host: 95.85.121.201
           port: 2222
           username: ${{ secrets.SSH_USENAME }}
           password: ${{ secrets.PASS_KEY }}
-          source: "."
+        with:
+          source: "./*"
           target: "/home/test"
           rm: false
             
