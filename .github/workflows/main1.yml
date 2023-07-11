@@ -37,8 +37,8 @@ jobs:
           host: 95.85.121.201
           port: 2222
           username: ${{ secrets.SSH_USENAME }}
-          key: ${{ secrets.SSH_PRIVATE_KEY }}
-          source: "/Prometeus/."
+          password: ${{ secrets.PASS_KEY }}
+          source: "./."
           target: /home/test/destination
           rm: false
             
