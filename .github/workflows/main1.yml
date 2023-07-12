@@ -15,18 +15,18 @@ jobs:
         with:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEYS }}
           
-#      - name: Add known hosts
-#        run: echo "${{ secrets.SSH_KEY }}" >> $HOME/.ssh/known_hosts
+      - name: Add known hosts
+        run: echo "${{ secrets.SSH_KEYS }}" >> $HOME/.ssh/known_hosts
           
-#      - name: Create destination directory
-#        uses: appleboy/ssh-action@master
-#        with:
-#          host: 95.85.121.201
-#          port: 2222
-#          username: ${{ secrets.SSH_USENAME }}
-#          key: ${{ secrets.SSH_PRIVATE_KEY }}
-#          script: |
-#            mkdir /home/test/destination
+      - name: Create destination directory
+        uses: appleboy/ssh-action@master
+        with:
+          host: 95.85.121.201
+          port: 2222
+          username: ${{ secrets.SSH_USENAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEYS }}
+          script: |
+            mkdir /home/test/destination
             
       - name: Add known hosts
         run: echo "${{ secrets.SSH_PRIVATE_KEYS }}" >> $HOME/.ssh/known_hosts
