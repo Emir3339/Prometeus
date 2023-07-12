@@ -10,10 +10,10 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Set up SSH connection
-        uses: webfactory/ssh-agent@v0.5.1
-        with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_Keys }}
+#      - name: Set up SSH connection
+#        uses: webfactory/ssh-agent@v0.5.1
+#        with:
+#          ssh-private-key: ${{ secrets.SSH_PRIVATE_Keys }}
           
 #      - name: Add known hosts
 #        run: echo "${{ secrets.SSH_KEYS }}" >> $HOME/.ssh/known_hosts
