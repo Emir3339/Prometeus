@@ -43,7 +43,7 @@ jobs:
           port: 2222
           username: ${{ secrets.SSH_USENAME }}
           key: ${{ secrets.SSH_PRIVATE_Keys }}
-          source: "./*"
+          source: "."
           target: "/home/test"
           rm: false
             
