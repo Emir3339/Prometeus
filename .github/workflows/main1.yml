@@ -45,11 +45,25 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_Keys }}
           source: "."
           target: "/home/test/destination"
-          command: |
-            cd /home/test/destination
-            tar -xzvf *.tar.gz
-            rm *.tar.gz
+#          command: |
+#            cd /home/test/destination
+#            tar -xzvf *.tar.gz
+#            rm *.tar.gz
             
+      - name: Unpack .tar.gz archives and remove the archives
+        uses: appleboy/ssh-action@master
+        with:
+          host: 95.85.121.201
+          port: 2222
+          username: ${{ secrets.SSH_USENAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEYS }}
+          script: |
+            cd /home/test/destination
+            for file in *.tar.gz; do
+              tar -xzvf *.tar.gz
+              rm *.tar.gz
+            done
+      
 #      - name: Create temporary key file
 #        run: echo "$SSH_PRIVATE_KEY" > temp_key
         
