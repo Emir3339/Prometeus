@@ -26,7 +26,12 @@ jobs:
           username: ${{ secrets.SSH_USENAME }}
           key: ${{ secrets.SSH_PRIVATE_KEYS }}
           script: |
-            mkdir /home/test/destination
+            # Проверяем, существует ли папка /home/test/destination
+            if [ ! -d "/home/test/destination" ]; then
+              mkdir /home/test/destination
+            else
+              echo "Directory /home/test/destination already exists. Skipping mkdir."
+            fi
             
 #      - name: Add known hosts
 #        run: echo "${{ secrets.SSH_PRIVATE_Keys }}" >> $HOME/.ssh/known_hosts
