@@ -1,3 +1,5 @@
+#!/bin/bash
+
 success=true
 
 if ! apt install python-pip -y; then
@@ -14,7 +16,6 @@ if [ "$success" = true ]; then
     if [ "$success" = true ]; then
         apt-add-repository --yes --update ppa:ansible/ansible;
         apt install -y ansible;
-        ansible --version;
 
         if ! apt install docker-compose -y; then
             success=false
@@ -27,7 +28,7 @@ if [ "$success" = true ]; then
 fi
 
 if [ "$success" = true ]; then
-    echo "complete"
+    echo "Installation complete."
 else
     echo "Installation failed. Aborting."
 fi
