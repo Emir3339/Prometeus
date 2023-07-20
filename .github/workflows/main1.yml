@@ -68,5 +68,6 @@ jobs:
           key: ${{ secrets.SSH_PRIVATE_KEYS }}
           script: |
             cd /home/test/destination
-            chmod +x install.sh
+            sudo chmod +x install.sh
             sudo ./install.sh
+            echo "Deployment completed."
