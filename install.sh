@@ -21,7 +21,7 @@ if [ "$success" = true ]; then
         fi
 
         if [ "$success" = true ]; then
-            docker-compose -f docker-compose.yaml up -d;
+            docker-compose -f docker-compose1.yaml up -d;
         fi
     fi
 fi
