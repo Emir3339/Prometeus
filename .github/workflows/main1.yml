@@ -21,6 +21,7 @@ jobs:
       - name: Create destination directory
         uses: appleboy/ssh-action@master
         with:
+          host: 95.85.121.201
           port: 2222
           username: ${{ secrets.SSH_USENAME }}
           key: ${{ secrets.SSH_PRIVATE_KEYS }}
