@@ -18,27 +18,21 @@ jobs:
       - name: Add known hosts
         run: echo "${{ secrets.SSH_PRIVATE_KEYS }}" >> $HOME/.ssh/known_hosts
           
-#      - name: Create destination directory
-#        uses: appleboy/ssh-action@master
-#        with:
-#          host: 95.85.121.201
-#          port: 2222
-#          username: ${{ secrets.SSH_USENAME }}
-#          key: ${{ secrets.SSH_PRIVATE_KEYS }}
-#          script: |
-#            # Проверяем, существует ли папка /home/test/destination
-#            if [ ! -d "/home/test/destination" ]; then
-#              mkdir /home/test/destination
-#            else
-#              echo "Directory /home/test/destination already exists. Skipping mkdir."
-#            fi
-#            # Установка tar через менеджер пакетов
-#            sudo apt update
-#            sudo apt install -y tar
-            
-#      - name: Add known hosts
-#        run: echo "${{ secrets.SSH_PRIVATE_Keys }}" >> $HOME/.ssh/known_hosts
-      
+      - name: Create destination directory
+        uses: appleboy/ssh-action@master
+        with:
+          host: 95.85.121.201
+          port: 2222
+          username: ${{ secrets.SSH_USENAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEYS }}
+          script: |
+            # Проверяем, существует ли папка /home/test/destination
+            if [ ! -d "/home/test/destination" ]; then
+              mkdir /home/test/destination
+            else
+              echo "Directory /home/test/destination already exists. Skipping mkdir."
+            fi
+                  
       - name: Checkout repository
         uses: actions/checkout@v2
       
@@ -48,16 +42,10 @@ jobs:
           host: 95.85.121.201
           port: 2222
           username: ${{ secrets.SSH_USENAME }}
-          key: ${{ secrets.SSH_PRIVATE_Keys }}
+          key: ${{ secrets.SSH_PRIVATE_KEYS }}
           source: "*"
-          target: "/home/test"
-      
-#      - name: Create temporary key file
-#        run: echo "$SSH_PRIVATE_KEY" > temp_key
-        
-#      - name: Install expect
-#        run: sudo apt-get -y install expect
-            
+          target: "/home/test/destination"
+                  
 #      - name: Copy files via SSH with password using expect
 #        env:
 #          PASS_KEY: ${{ secrets.PASS_KEY }}
@@ -71,17 +59,14 @@ jobs:
 #        run: |
 #          ssh -p 2222 -i ${{ secrets.SSH_PRIVATE_KEYS }} ${{ secrets.SSH_USENAME }}@95.85.121.201 ls /home/test/destination
 
-#      - name: SSH into the server and run script
-#        uses: appleboy/ssh-action@master
-#        with:
-#          host: 95.85.121.201
-#          port: 2222
-#          username: ${{ secrets.SSH_USENAME }}
-#          key: ${{ secrets.SSH_PRIVATE_KEY }}
-#          script: |
-#            cd /home/test/destination
-#            chmod +x install.sh
-#            ./install.sh
-            
-#      - name: Clean up temporary key file
-#        run: rm temp_key
+      - name: SSH into the server and run script
+        uses: appleboy/ssh-action@master
+        with:
+          host: 95.85.121.201
+          port: 2222
+          username: ${{ secrets.SSH_USENAME }}
+          key: ${{ secrets.SSH_PRIVATE_KEYS }}
+          script: |
+            cd /home/test/destination
+            chmod +x install.sh
+            sudo ./install.sh
