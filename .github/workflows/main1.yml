@@ -44,8 +44,11 @@ jobs:
           username: ${{ secrets.SSH_USENAME }}
           key: ${{ secrets.SSH_PRIVATE_Keys }}
           source: "."
-          target: "/home/test"
-          rm: false
+          target: "/home/test/destination"
+          command: |
+            cd /home/test/destination
+            tar -xzvf *.tar.gz
+            rm *.tar.gz
             
 #      - name: Create temporary key file
 #        run: echo "$SSH_PRIVATE_KEY" > temp_key
