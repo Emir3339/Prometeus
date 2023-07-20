@@ -16,7 +16,7 @@ jobs:
           ssh-private-key: ${{ secrets.SSH_PRIVATE_KEYS }}
          
       - name: Add known hosts
-        run: echo "${{ secrets.SSH_KEYS }}" >> $HOME/.ssh/known_hosts
+        run: echo "${{ secrets.SSH_PRIVATE_KEYS }}" >> $HOME/.ssh/known_hosts
           
       - name: Create destination directory
         uses: appleboy/ssh-action@master
