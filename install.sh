@@ -9,11 +9,6 @@ fi
 if systemctl start docker; then
     echo "Service started successfully."
     systemctl status docker
-    status=$(systemctl is-active docker)
-    if [ "$status" = "active" ]; then
-    else
-       echo "Service is not active. Aborting."
-    fi
 else
     echo "Failed to start service. Aborting."
 fi
